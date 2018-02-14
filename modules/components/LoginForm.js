@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Button, TextInput } from 'react-native';
 
 /* COLORS STYLEHSHEET */
-import { Colors } from '../utils/colors';
+import { Colors } from '../../utils/colors';
 
 
 const styles = StyleSheet.create({
@@ -39,11 +39,16 @@ export default class LoginForm extends React.Component {
                               borderColor: 'gray', 
                               marginBottom: 10,
                               textAlign: 'center'
-                            }} value="testjeeeee" />
+                            }} value="test@gmail.com" />
+          <TextInput style={{ height: 40, 
+                              borderColor: 'gray', 
+                              marginBottom: 10,
+                              textAlign: 'center'
+                            }} value="wickedman" secureTextEntry />
                             
         <View style={styles.buttonContainer}>
           <Button onPress={console.log('pressed')} color={Colors.BROKEN_WHITE} title="Register" />
-          <Button onPress={console.log('pressed')} title="Login" />
+          <Button onPress={() => console.log('hey')} title="Login" />
         </View>
       </View>
     );
