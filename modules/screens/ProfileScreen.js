@@ -1,12 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Text, Button} from 'react-native';
-import LoginForm from '../components/LoginForm';
-export default class LoginScreen extends React.Component {
+
+export default class ProfileScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        {/* <Text>GREEWARD</Text> */}
-        <LoginForm/>
+        <Text>Profile Screen</Text>
       </View>
     );
   }

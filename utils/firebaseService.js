@@ -6,6 +6,7 @@ export function initializeFirebase() {
         throw new Error('Add your own firebaseConfig.json file in the folder /utils/firebaseConfig.json');
       } else {
           // Initialize the firebase app
+          console.log("Initializing firebase.");
           firebase.initializeApp(firebaseConfig);
       }
 }
@@ -13,9 +14,18 @@ export function initializeFirebase() {
 export function sendData() {
   let defaultFirebase = firebase.database();
   let test = defaultFirebase.ref('test');
-
   test.on('child_added', function(snapshot) {
     console.log(snapshot);
   });
 
 }
+
+// Returns a firebase Database reference
+export function listenFirebaseChanges() {
+  return firebase.database();
+}
+
+export function firebaseAuth() {
+  return firebase.auth();
+}
+
