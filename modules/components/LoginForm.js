@@ -1,19 +1,27 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Font } from 'expo';
+
 /* COLORS STYLEHSHEET */
 import { Colors } from '../../utils/colors';
 import { logInUser, registerUser } from '../../utils/firebaseAuth';
+
+/* COMPONENTS */
+import Buttons from '../components/Buttons';
+import InputField from '../components/InputField';
 
 const styles = StyleSheet.create({
   formContainer: {
     width: 400,
   },
+  /*
   loginForm: {
     height:60,
     textAlign: 'left',
     marginBottom:20,
   },
+  */
+  /*
   loginButton: {
     height:60,
     marginBottom:20,
@@ -27,6 +35,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'raleway-thin',
   },
+  */
   title: {
     textAlign: 'center',
     fontSize: 40,
@@ -53,14 +62,20 @@ export default class LoginForm extends React.Component {
     return (
       <View style={styles.formContainer}>
       {this.state.fontLoaded ? ( <Text style={styles.title}>GREEWARD</Text> ) : null}
+          <InputField />
+          {/* 
           <TextInput style={styles.loginForm} placeholder="email" onChangeText={(email) => this.setState({email})} />
           <TextInput style={styles.loginForm} placeholder="password" secureTextEntry={true} onChangeText={(password) =>this.setState({password})} />
+          */}
+          < Buttons />
+          {/* 
           <TouchableOpacity onPress={() => registerUser(this.state.email, this.state.password)} style={styles.loginButton}>
             {this.state.fontLoaded ? (<Text style={styles.loginButtonText}>Register</Text>) : null}
           </TouchableOpacity>
           <TouchableOpacity onPress={() => logInUser(this.state.email, this.state.password)} style={styles.loginButton}>
           {this.state.fontLoaded ? (<Text style={styles.loginButtonText}>Login</Text>) : null}
           </TouchableOpacity>
+          */}
       </View>
     );
   }
