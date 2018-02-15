@@ -25,6 +25,11 @@ export default class HomeScreen extends React.Component {
           title="Go to feed"
           onPress={() => this.props.navigation.navigate('Feed')}
         />
+        {/* <Button 
+          title="Go to leaderboard"
+          onPress={() => this.props.navigation.navigate('Leaderboards')}
+        /> Als we er op klikken krijgen we errors :p
+        */}
         < Footer />
       </View>
     );

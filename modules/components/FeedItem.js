@@ -9,7 +9,7 @@ import { ClickableName } from './ClickableName';
 import { ProfilePicture } from './ProfilePicture';
 import { TestUser } from '../../utils/TestUser';
 
-export class FeedItem extends React.Component {
+export default class FeedItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,10 +19,12 @@ export class FeedItem extends React.Component {
     render() {
         return (
             <View>
+                {/* 
                 <ProfilePicture src={this.state.user.profilePictureUrl}/>
                 <ClickableName name={this.state.user.firstName + this.state.user.lastName}></ClickableName>
                 <TripStats></TripStats>
                 <Likes></Likes>
+                */}
             </View>
         )
     }

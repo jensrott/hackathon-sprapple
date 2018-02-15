@@ -18,7 +18,7 @@ export default class ProfileScreen extends React.Component {
   render() {
     return (
       <View style={styles.profileContainer}>
-        < Header title="User Profile" />
+        < Header title="User Profile" picture="../../assets/placeholder.png" />
           < Card />
         < Footer />
       </View>
