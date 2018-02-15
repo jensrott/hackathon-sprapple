@@ -3,4 +3,5 @@ export const Colors = {
     LIGHT_GREEN: '#c9dd97',
     BROKEN_WHITE: '#f4f3ea',
     WHITE: '#fff',
+    BLACK: '#000'
   };

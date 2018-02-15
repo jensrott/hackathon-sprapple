@@ -7,7 +7,9 @@ import {
     Linking,
 } from 'react-native';
 
-export class ClickableName extends Component {
+import { fonts_headings } from '../../modules/styles/fonts_headings'
+
+export class ClickableName extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,8 +20,8 @@ export class ClickableName extends Component {
 
     render() {
         return (
-            <TouchableOpacity onPress={() => Linking.openURL(this.state.url)} style={}>
-                <Text style={styles.h2}>{this.state.name}</Text>
+            <TouchableOpacity onPress={() => Linking.openURL(this.state.url)}>
+                <Text>{this.state.firstName}</Text>
             </TouchableOpacity>
         )
     }

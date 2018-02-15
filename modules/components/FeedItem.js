@@ -5,25 +5,24 @@ import {
     StyleSheet,
 } from 'react-native';
 
-import { ClickableName } from './modules/components/ClickableName';
-import { ProfilePicture } from './modules/components/ProfilePicture';
+import { ClickableName } from './ClickableName';
+import { ProfilePicture } from './ProfilePicture';
+import { TestUser } from '../../utils/TestUser';
 
-export class FeedItem extends Component {
+export class FeedItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: this.props.user
+            'user': this.props.user,
         }
     }
     render() {
         return (
-            // <View style={styles.container}>
-            //     <ProfilePicture src={this.state.user.profilePicture} url={/*TODO: Add way to go to user profile url*/}/>
-            //     <ClickableName name={this.state.user.firstName + this.state.user.lastName}></ClickableName>
-            // </View>
             <View>
-                <ProfilePicture src={'a url'}/>
-                <ClickableName name={'john' + 'doe'}></ClickableName>
+                <ProfilePicture src={this.state.user.profilePictureUrl}/>
+                <ClickableName name={this.state.user.firstName + this.state.user.lastName}></ClickableName>
+                <TripStats></TripStats>
+                <Likes></Likes>
             </View>
         )
     }

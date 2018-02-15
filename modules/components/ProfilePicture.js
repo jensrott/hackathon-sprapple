@@ -8,19 +8,19 @@ import {
 
 
 // footer
-export class ProfileImage extends Component {
-    constructor() {
+export class ProfilePicture extends React.Component {
+    constructor(props) {
         super(props);
 
         this.state = {
-            profilePicture = this.props.profilePicture
+            'profilePictureUrl' : this.props.profilePictureUrl
         }
     }
 
     render() {
         return(
             <View>
-                <Image source={this.state.profilePicture}/>
+                <Image source={this.state.profilePictureUrl}/>
             </View>
         );
     }

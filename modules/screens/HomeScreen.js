@@ -3,12 +3,10 @@ import { StyleSheet, View, Text, Button} from 'react-native';
 
 // import our compenent we just created
 import Footer from '../components/Footer';
-import { FeedItem } from '../components/FeedItem';
 
 export default class HomeScreen extends React.Component {
   render() {
     return (
-      <FeedItem></FeedItem>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Home Screen</Text>
         <Button
