@@ -35,6 +35,7 @@
     "firebase-redux": "^0.0.5",
     "react": "16.2.0",
     "react-native": "0.52.0",
+    "react-native-remote-svg": "^1.0.1",
     "react-navigation": "^1.0.3",
     "react-navigation-redux-helpers": "^1.0.1",
     "react-redux": "^5.0.6",

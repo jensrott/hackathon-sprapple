@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Button} from 'react-native';
 
+// import our compenent we just created
 import Footer from '../components/Footer';
 
 export default class HomeScreen extends React.Component {
@@ -16,6 +17,8 @@ export default class HomeScreen extends React.Component {
           title="Go to Login"
           onPress={() => this.props.navigation.navigate('Login')}
         />
+
+        < Footer />
       </View>
     );
   }
