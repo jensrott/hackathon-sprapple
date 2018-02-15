@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Button} from 'react-native';
 
-// import our compenent we just created
+// Import our component we just created
 import Footer from '../components/Footer';
 
 export default class HomeScreen extends React.Component {
@@ -17,7 +17,14 @@ export default class HomeScreen extends React.Component {
           title="Go to Login"
           onPress={() => this.props.navigation.navigate('Login')}
         />
-
+        <Button 
+          title="Go to profile"
+          onPress={() => this.props.navigation.navigate('Profile')}
+        />
+        <Button 
+          title="Go to feed"
+          onPress={() => this.props.navigation.navigate('Feed')}
+        />
         < Footer />
       </View>
     );

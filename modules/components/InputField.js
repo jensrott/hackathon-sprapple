@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import { Font } from 'expo';
-/* COLORS STYLEHSHEET */
+/* COLORS STYLESHEET */
 import { Colors } from '../../utils/colors';
 import { logInUser, registerUser } from '../../utils/firebaseAuth';
 

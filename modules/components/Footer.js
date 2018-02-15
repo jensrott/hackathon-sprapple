@@ -9,13 +9,10 @@ import {
     TouchableHighlight,
 } from 'react-native';
 
-// voor svg files
+// To use the SVGS
 import Image from 'react-native-remote-svg' // -> npm install react-native-remote-svg --save
 
-// import SvgUri from 'react-native-svg-uri';
-// <SvgUri source={achievementsIcon} height= '80' width= '80' color='white'/>
-
-// importing the icons
+// Importing the icons
 const homeIcon = require('../../assets/images/homeIcon.svg');
 const homeIconWhite = require('../../assets/images/homeIconWhite.svg');
 const leaderboardsIcon = require('../../assets/images/leaderboardsIcon.svg');
@@ -29,10 +26,10 @@ const Footer = () => (
         <TouchableOpacity onPress={() => {Alert.alert('You tapped the home Button!');}} style={styles.homeButton}>
             <Image source={homeIconWhite} style={styles.footerButton} />
         </TouchableOpacity>
-        <TouchableOpacity /*onPress={ }*/ style={styles.leaderboardsButton}>
+        <TouchableOpacity onPress={() => {Alert.alert('Leaderboard button!');} } style={styles.leaderboardsButton}>
             <Image source={leaderboardsIcon} style={styles.footerButton} />
         </TouchableOpacity>
-        <TouchableOpacity /*onPress={ }*/ style={styles.achievementsButton}>
+        <TouchableOpacity onPress={() => {Alert.alert('Another button!');} } style={styles.achievementsButton}>
             <Image source={achievementsIcon} style={styles.footerButton}/>
         </TouchableOpacity>
     </View>
