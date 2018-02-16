@@ -4,7 +4,7 @@ import {
     Text,
     StyleSheet,
 } from 'react-native';
-
+ 
 import { ClickableName } from './ClickableName';
 import { ProfilePicture } from './ProfilePicture';
 import { TestUser } from '../../utils/TestUser';
