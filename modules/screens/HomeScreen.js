@@ -32,7 +32,7 @@ export default class HomeScreen extends React.Component {
           title="Go to achievements"
           onPress={() => this.props.navigation.navigate('Achievements')}
         /> 
-        
+        {/* FOOTER BUTTONS */}        
         <View style={styles.container}>
             <TouchableOpacity style={styles.homeButton}>
                 <Image source={homeIconWhite} style={styles.footerButton} />

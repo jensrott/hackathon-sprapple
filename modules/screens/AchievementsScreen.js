@@ -11,6 +11,7 @@ export default class AchievementsScreen extends React.Component {
   render() {
     return (
       <View style={styles.main}><Text>Achievement screen</Text>
+        {/* FOOTER BUTTONS */}      
       <View style={styles.container}>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')} style={styles.homeButton}>
             <Image source={homeIcon} style={styles.footerButton} />

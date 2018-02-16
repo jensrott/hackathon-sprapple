@@ -19,6 +19,7 @@ export default class LeaderboardsScreen extends React.Component {
         < Header title="Leaderboard" picture="../../assets/placeholder.png" />
           <Text>Global</Text>
           < FeedItem />
+        {/* FOOTER BUTTONS */}          
           <View style={styles.container}>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')} style={styles.homeButton}>
                 <Image source={homeIcon} style={styles.footerButton} />

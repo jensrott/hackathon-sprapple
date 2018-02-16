@@ -12,6 +12,7 @@ export default class DetailsScreen extends React.Component {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Details Screen</Text>
+        {/* FOOTER BUTTONS */}        
         <View style={styles.container}>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')} style={styles.homeButton}>
             <Image source={homeIcon} style={styles.footerButton} />
