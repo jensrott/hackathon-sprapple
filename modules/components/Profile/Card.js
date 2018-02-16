@@ -1,5 +1,12 @@
 import React from 'react';
-import {StyleSheet,View,Text,TextInput,TouchableOpacity, Image} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image
+} from 'react-native';
 
 import { Font } from 'expo';
 
@@ -7,16 +14,31 @@ import { Font } from 'expo';
 import { Colors } from '../../../utils/colors';
 import { logInUser, registerUser } from '../../../utils/firebaseAuth';
 
-const styles = StyleSheet.create({
+/* Importing the components for the Card so we only need to import once */
+import ProfilePicture from './ProfilePicture';
+import Followers from './Followers';
+import Following from './Following';
+import Name from './Name';
+import Location from './Location';
 
-});
+
+const styles = StyleSheet.create({});
 
 export default class Card extends React.Component {
-    render() {
-        return(
-            <View>
-                <Text>User Card</Text>
-            </View>
-        );
-    }
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <View>
+				<Text>User Card</Text>
+					<Name />	
+					<Location />
+					<ProfilePicture />
+					<Followers />
+					<Following />
+      </View>
+    );
+  }
 }
