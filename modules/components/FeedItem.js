@@ -4,10 +4,12 @@ import {
     Text,
     StyleSheet,
 } from 'react-native';
- 
+
+/* 
 import { ClickableName } from './ClickableName';
 import { ProfilePicture } from './ProfilePicture';
 import { TestUser } from '../../utils/TestUser';
+*/
 
 export default class FeedItem extends React.Component {
     constructor(props) {
