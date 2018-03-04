@@ -3,6 +3,7 @@ import React from 'react';
 import { StatusBar, StyleSheet, ListView, ActivityIndicator, TouchableOpacity } from 'react-native'
 import {Container, Header, Content, Button, Text, Icon, Item, Input, List, ListItem, Thumbnail, Body, Left, Right, Spinner, Title, Fab } from 'native-base';
 import { FirebaseDatabase, FirebaseAuth, FirebaseComplete } from '../firebase/firebase';
+import timeAgo from '../utils/TimeAgo';
 import AppLoading from '../components/AppLoading';
 import firebase from 'firebase';
 
@@ -211,7 +212,7 @@ export default class HomeScreen extends React.Component {
                 </TouchableOpacity>
               </Left>
               <Body>
-                <Text note>{data.val().city}</Text>
+                <Text note>{data.val().city} - {timeAgo(data.val().createdDate)}</Text>
                 <Text>{data.val().author}</Text>
                 <Text note>
                 <Icon name="ios-bicycle" style={{fontSize:20}} />{ '  ' +data.val().km + ' '}

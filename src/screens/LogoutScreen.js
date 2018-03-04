@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Container, Content, Button, Text, List, ListItem, Icon, Toast } from 'native-base';
+import timeAgo from '../utils/TimeAgo';
 import firebase from 'firebase'
 
 
@@ -26,6 +27,7 @@ export default class LogoutScreen extends React.Component {
       })
     }).catch(error => {
       Toast.show({
+        duration: 2000,
         text: error.message,
         position: 'bottom',
         buttonText: 'Okay',
@@ -36,6 +38,7 @@ export default class LogoutScreen extends React.Component {
     const user = this.props.user
     const userData = this.props.userData
     console.log(userData);
+    console.log(timeAgo(userData.createdDate));
     return (
       <Container>
       <Content>
@@ -50,7 +53,7 @@ export default class LogoutScreen extends React.Component {
             <Text>Email: {user.email}</Text>
           </ListItem>
           <ListItem>
-            <Text>Created at: {userData.createdDate}</Text>
+            <Text>Created at: {timeAgo(userData.createdDate)}</Text>
           </ListItem>
           <ListItem>
             <Text>Id: {user.uid}</Text>

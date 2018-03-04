@@ -4,6 +4,7 @@ import {ActivityIndicator, ListView, StatusBar, TouchableOpacity, Platform } fro
 import { Container, Button, Text, Content, Header, Item, Grid, Col, Icon, Input, Card, CardItem, View, Thumbnail, List, ListItem, Left, Right, Body, Footer, FooterTab} from 'native-base';
 import firebase from 'firebase'
 import { FirebaseAuth } from '../firebase/firebase';
+import timeAgo from '../utils/TimeAgo';
 
 let data = [];
 export default class DetailScreen extends React.Component {
@@ -33,6 +34,7 @@ export default class DetailScreen extends React.Component {
           author: snapchild.val().author,
           comment: snapchild.val().comment,
           uid: snapchild.val().authorId,
+          createdDate: snapchild.val().createdDate,
           _key: snapchild.key,
         })
       })
@@ -53,7 +55,8 @@ export default class DetailScreen extends React.Component {
     firebase.database().ref('activity-comments/' + this.props.data.key + '/' + key).set({
       authorId: firebase.auth().currentUser.uid,
       author: firebase.auth().currentUser.displayName,
-      comment: this.state.comment
+      comment: this.state.comment,
+      createdDate: firebase.database.ServerValue.TIMESTAMP,
     });
   }
   async deleteRow(secId, rowId, rowMap, data) {
@@ -92,7 +95,7 @@ export default class DetailScreen extends React.Component {
                     </TouchableOpacity>
                     <View style={{paddingLeft:10}}>
                       <Text style={{fontSize:20}} onPress={() => Actions.profile({id: this.props.data.val().uid})} >{this.props.data.val().author}</Text>
-                      <Text note style={{paddingBottom:5}}>{this.props.data.val().city} - 10 uur geleden</Text>
+                      <Text note style={{paddingBottom:5}}>{this.props.data.val().city} - {timeAgo(this.props.data.val().createdDate)}</Text>
                       <Icon name={this.props.data.userLiked === true ? 'ios-heart' : 'ios-heart-outline'} style={{fontSize:25, color:'red'}}><Text note style={{lineHeight:25}}> {this.props.data.likeCount}</Text></Icon>
                     </View>
                   </View>
@@ -130,7 +133,7 @@ export default class DetailScreen extends React.Component {
                     <Text>{data.comment}</Text>
                   </Body>
                   <Right>
-                    <Text note>3 hours ago</Text>
+                    <Text note>{timeAgo(data.createdDate)}</Text>
                   </Right>
                 </ListItem>
               }

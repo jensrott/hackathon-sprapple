@@ -9,7 +9,7 @@ export default class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        name: "",
+        displayName: "",
         email: "",
         password: "",
         showToats: false,
@@ -36,11 +36,11 @@ export default class LoginScreen extends React.Component {
         const randomPhoto = photos[(Math.random() * photos.length) | 0]; 
         if(user) {
             user.updateProfile({
-                displayName: this.state.name,
+                displayName: this.state.displayName,
                 photoURL: randomPhoto
             }).then(() => {
                 firebase.database().ref('users/' + user.uid).set({
-                    name: this.state.name,
+                    name: this.state.displayName,
                     email: this.state.email,
                     createdDate: firebase.database.ServerValue.TIMESTAMP,
                     followingCount:  0,
