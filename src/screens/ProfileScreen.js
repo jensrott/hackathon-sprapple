@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { TouchableOpacity, ListView } from 'react-native'
 import { Container, Content, Text, Card, CardItem, View, Thumbnail, Grid, Col, Icon, Badge, Button, List, ListItem, Body, Left, Right } from 'native-base';
 import firebase from 'firebase';
+import timeAgo from '../utils/TimeAgo';
 import { Actions } from 'react-native-router-flux'
 
 export default class AppFooter extends Component {
@@ -238,7 +239,7 @@ export default class AppFooter extends Component {
           <Card>
             <CardItem>
               <View style={{flexDirection:'row'}}>
-                <Thumbnail large source={{uri: 'https://i.imgur.com/RRWRFac.png'}} />
+                <Thumbnail large source={{uri: this.state.profileData.photoURL}} />
                 <View style={{paddingLeft:10}}>
                   <Text style={{fontSize:20, marginBottom:10}}>{this.state.profileData.name}</Text>
                   <View style={{flexDirection:"row"}}>
@@ -276,11 +277,11 @@ export default class AppFooter extends Component {
           <ListItem avatar style={{paddingTop: 10, paddingLeft: 10}}>
           <Left>
             <TouchableOpacity onPress={() => Actions.profile({id: data.val().uid})}>
-              <Thumbnail source={{uri: 'https://i.imgur.com/RRWRFac.png'}} />
+              <Thumbnail source={{uri: data.val().photoURL }} />
             </TouchableOpacity>
           </Left>
           <Body>
-            <Text note>{data.val().city}</Text>
+            <Text note>{data.val().city} - {timeAgo(data.val().createdDate)}</Text>
             <Text>{data.val().author}</Text>
             <Text note>
             <Icon name="ios-bicycle" style={{fontSize:20}} />{ '  ' +data.val().km + ' '}

@@ -91,7 +91,7 @@ export default class DetailScreen extends React.Component {
                 <CardItem>
                   <View style={{flexDirection:'row'}}>
                     <TouchableOpacity onPress={() => Actions.profile({id: this.props.data.val().uid})} >
-                      <Thumbnail large source={{uri: 'https://i.imgur.com/RRWRFac.png'}} />
+                      <Thumbnail large source={{uri: this.props.data.val().photoURL}} />
                     </TouchableOpacity>
                     <View style={{paddingLeft:10}}>
                       <Text style={{fontSize:20}} onPress={() => Actions.profile({id: this.props.data.val().uid})} >{this.props.data.val().author}</Text>

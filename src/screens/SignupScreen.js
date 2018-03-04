@@ -42,6 +42,7 @@ export default class LoginScreen extends React.Component {
                 firebase.database().ref('users/' + user.uid).set({
                     name: this.state.displayName,
                     email: this.state.email,
+                    photoURL: randomPhoto,
                     createdDate: firebase.database.ServerValue.TIMESTAMP,
                     followingCount:  0,
                     followerCount: 0,

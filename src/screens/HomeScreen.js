@@ -51,10 +51,12 @@ export default class HomeScreen extends React.Component {
     const co = Math.random(0,1) * kilometers;
     const authorId = FirebaseAuth().currentUser.uid;
     const author = FirebaseAuth().currentUser.displayName;
+    const photoURL = firebase.auth().currentUser.photoURL;
     let cities = ['Gent', 'Antwerpen', 'Kortrijk', 'Brussel']; 
     var randomCity = cities[(Math.random() * cities.length) | 0]; 
     const ActivityData = {
       author: author,
+      photoURL: photoURL,
       uid: authorId,
       km : kilometers,
       co: co,
@@ -208,7 +210,7 @@ export default class HomeScreen extends React.Component {
               <ListItem avatar style={{paddingTop: 10, paddingLeft: 10}}>
               <Left>
                 <TouchableOpacity onPress={() => Actions.profile({id: data.val().uid})}>
-                <Thumbnail source={{uri: 'https://i.imgur.com/RRWRFac.png'}} />
+                <Thumbnail source={{uri: data.val().photoURL}} />
                 </TouchableOpacity>
               </Left>
               <Body>
