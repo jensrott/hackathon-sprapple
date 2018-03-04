@@ -24,8 +24,6 @@ export default class DetailScreen extends React.Component {
   }
   componentDidMount() {
     Actions.refresh(this.props.data)
-    console.log(this.state.commentData);
-    console.log('fireref on');
     this.fireRef.child(this.props.data.key).on('value', (data) => {
       console.log('starting fetching');
       let newData = [];
@@ -34,6 +32,7 @@ export default class DetailScreen extends React.Component {
           author: snapchild.val().author,
           comment: snapchild.val().comment,
           uid: snapchild.val().authorId,
+          photoURL: snapchild.val().photoURL,
           createdDate: snapchild.val().createdDate,
           _key: snapchild.key,
         })
@@ -55,6 +54,7 @@ export default class DetailScreen extends React.Component {
     firebase.database().ref('activity-comments/' + this.props.data.key + '/' + key).set({
       authorId: firebase.auth().currentUser.uid,
       author: firebase.auth().currentUser.displayName,
+      photoURL: firebase.auth().currentUser.photoURL,
       comment: this.state.comment,
       createdDate: firebase.database.ServerValue.TIMESTAMP,
     });
@@ -126,7 +126,9 @@ export default class DetailScreen extends React.Component {
               renderRow={(data,secId,rowId) => 
                 <ListItem avatar style={{paddingTop: 10, paddingLeft:10}}>
                   <Left>
-                  <Thumbnail source={{ uri: 'https://i.imgur.com/RRWRFac.png' }} style={{marginBottom: 10}} />
+                    <TouchableOpacity onPress={() => Actions.profile({id: data.uid})} >
+                      <Thumbnail source={{ uri: data.photoURL }} style={{marginBottom: 10}} />
+                    </TouchableOpacity>
                   </Left>
                   <Body>
                     <Text note>{data.author}</Text>
