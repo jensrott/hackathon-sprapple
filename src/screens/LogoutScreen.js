@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, Content, Button, Text, List, ListItem, Icon} from 'native-base';
+import { Container, Content, Button, Text, List, ListItem, Icon, Toast } from 'native-base';
 import firebase from 'firebase'
 
 
@@ -8,8 +8,29 @@ export default class LogoutScreen extends React.Component {
   logout() {
     console.log('clicked logout')
     firebase.auth().signOut()
-    .then(console.log('user succesfully logged out'))
+    .then(() => {
+      Toast.show({
+        text: 'Succesfully logged out',
+        position: 'bottom',
+        buttonText: 'Okay',
+      })
+    })
     .catch(e => console.log(e.error))
+  }
+  deleteAccount() {
+    firebase.auth().currentUser.delete().then(() => {
+      Toast.show({
+        text: 'Account succesfully removed',
+        position: 'bottom',
+        buttonText: 'Okay',
+      })
+    }).catch(error => {
+      Toast.show({
+        text: error.message,
+        position: 'bottom',
+        buttonText: 'Okay',
+      })
+    })
   }
   render() {
     const user = this.props.user
@@ -61,6 +82,9 @@ export default class LogoutScreen extends React.Component {
         </List>
         <Button block onPress={() => this.logout()}>
           <Text>Sign out</Text>
+        </Button>
+        <Button danger block onPress={() => this.deleteAccount()} >
+          <Text>Delete my account </Text>
         </Button>
       </Content>
     </Container>

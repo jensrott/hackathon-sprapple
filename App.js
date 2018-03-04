@@ -7,6 +7,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import DetailScreen from './src/screens/DetailScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import AuthScreen from './src/screens/AuthScreen'
+import SignupScreen from './src/screens/SignupScreen'
 import AppFooter from './src/components/AppFooter';
 
 import LeaderScreen from './src/screens/LeaderScreen';
@@ -69,6 +70,11 @@ export default class App extends React.Component {
                 key ="profile"
                 component={ProfileScreen}
                 title="Profile"
+              />
+              <Scene 
+                key="signup"
+                component={SignupScreen}
+                title="Sign up"
               />
               
             </Scene>

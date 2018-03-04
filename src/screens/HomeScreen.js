@@ -69,16 +69,51 @@ export default class HomeScreen extends React.Component {
     updates['/user-feed/' + authorId + '/' + key] = ActivityData;
     firebase.database().ref().update(updates).then(e => {
       console.log('Activity created')
+      console.log(ActivityData.km);
+      this.updateUserStats(ActivityData.km, ActivityData.co, ActivityData.points, ActivityData.uid, 'sum');
     }).catch(error => {
       console.log(error)
     });
     //FirebaseDatabase().ref('/feed').child(key).set({name:data})
+  }
+  updateUserStats(km, co, points, uid, type) {
+    firebase.database().ref('users/' + uid).transaction((snap) => {
+      console.log(snap
+      );
+      if(snap != null) {
+        if(type === 'sum') {
+          snap.kmTotal = snap.kmTotal + km;
+          snap.coTotal = snap.coTotal + co;
+          snap.puntenTotal = snap.puntenTotal + points;
+        }
+        else if(type === 'subtract') {
+          snap.kmTotal = snap.kmTotal - km;
+          snap.coTotal = snap.coTotal - co;
+          snap.puntenTotal = snap.puntenTotal - points;
+        }
+      }
+      else {
+        snap = 1
+      }
+      return snap;
+    }, (error, committed, snapshot) => {
+      if (error) {
+        console.log('error in transaction');
+      } else if (!committed) {
+        console.log('transaction not committed');
+      } else {
+        console.log('Transaction Committed');
+      }
+    }, true
+  
+  );
   }
   async deleteRow(secId, rowId, rowMap, data) {
     const updates = {};
     updates['/feed/' + data.key] = null;
     updates['/user-feed/' + data.val().uid + '/' + data.key] = null;
     await FirebaseDatabase().ref().update(updates);
+    this.updateUserStats(data.val().km, data.val().co, data.val().points, data.val().uid, 'subtract');
     rowMap[`${secId}${rowId}`].props.closeRow();
     let newData = [...this.state.ListViewData]
     newData.splice(rowId,1)

@@ -73,6 +73,7 @@ export default class LoginScreen extends React.Component {
               <Button block onPress={() => this.logInUser() }>
                 <Text>Sign in</Text>
               </Button>
+              <Text note style={{marginTop:15, alignSelf: 'center'}} onPress={() => Actions.signup()} >Don't have an account yet ? Sign up!</Text>
             </Form>
           </Content>
         </Container>
