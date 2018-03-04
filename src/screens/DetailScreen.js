@@ -15,7 +15,6 @@ export default class DetailScreen extends React.Component {
       loading: true,
     }
     this.fireRef = firebase.database().ref('activity-comments');
-    this.fireRef.off();
     console.log('Detail page constructor');
     this.ds = new ListView.DataSource({rowHasChanged: (r1,r2) => r1 !== r2})
   }
@@ -26,10 +25,20 @@ export default class DetailScreen extends React.Component {
     Actions.refresh(this.props.data)
     console.log(this.state.commentData);
     console.log('fireref on');
-    var that = this
-    that.fireRef.child(this.props.data.key).on('child_added', (data) => {
-      let newData = [...that.state.commentData]
-      newData.push(data);
+    this.fireRef.child(this.props.data.key).on('value', (data) => {
+      console.log('starting fetching');
+      let newData = [];
+      data.forEach((snapchild) => {
+        newData.push({
+          author: snapchild.val().author,
+          comment: snapchild.val().comment,
+          uid: snapchild.val().authorId,
+          _key: snapchild.key,
+        })
+      })
+      //console.log(data)
+      //let newData = [...this.state.commentData]
+      //newData.push(data);
       this.setState({commentData: newData, loading: false})
     });
     
@@ -49,13 +58,12 @@ export default class DetailScreen extends React.Component {
   }
   async deleteRow(secId, rowId, rowMap, data) {
     console.log(data);
-    console.log(this.props.data.key);
-    console.log(data.key)
-      //await firebase.database().ref('activity-comments/' + this.props.data.key + '/' + data.key).set(null)
+    console.log(data._key)
+      await firebase.database().ref('activity-comments/' + this.props.data.key + '/' + data._key).set(null)
       rowMap[`${secId}${rowId}`].props.closeRow();
-      let newData = [...this.state.commentData]
-      newData.splice(rowId,1)
-      this.setState({commentData: newData});
+      //let newData = [...this.state.commentData]
+      //newData.splice(rowId,1)
+      //this.setState({commentData: newData});
     
   }
   render() {
@@ -118,8 +126,8 @@ export default class DetailScreen extends React.Component {
                   <Thumbnail source={{ uri: 'https://i.imgur.com/RRWRFac.png' }} style={{marginBottom: 10}} />
                   </Left>
                   <Body>
-                    <Text note>{data.val().author}</Text>
-                    <Text>{data.val().comment}</Text>
+                    <Text note>{data.author}</Text>
+                    <Text>{data.comment}</Text>
                   </Body>
                   <Right>
                     <Text note>3 hours ago</Text>

@@ -1,7 +1,8 @@
 import React from 'react';
-import {Container, Content, Button, Text, Form, Item, Input, Label, Body, Title, Icon } from 'native-base';
+import {Container, Content, Button, Text, Form, Item, Input, Label, Body, Title, Icon, Toast } from 'native-base';
 import { FirebaseAuth, FirebaseComplete } from '../firebase/firebase'
 import firebase from 'firebase';
+import { Keyboard } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
 export default class LoginScreen extends React.Component {
@@ -10,9 +11,11 @@ export default class LoginScreen extends React.Component {
     this.state = {
       email: "",
       password: "",
+      showToats: false,
     }
   }
   logInUser () {
+    Keyboard.dismiss()
     console.log("starting login");
     console.log("Email: " + this.state.email + " Password: " + this.state.password);
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
@@ -24,16 +27,32 @@ export default class LoginScreen extends React.Component {
       console.log(error.code)
       switch(error.code) {
         case 'auth/invalid-email': 
-          alert('Enter a valid password')
+          Toast.show({
+            text: 'Enter a valid password!',
+            position: 'bottom',
+            buttonText: 'Okay',
+          })
           break;
         case 'auth/user-not-found':
-          alert("This email and password combination doesn't exist")
+          Toast.show({
+            text: "This email and password combination doesn't exist!",
+            position: 'bottom',
+            buttonText: 'Okay'
+          })
           break;
         case 'auth/wrong-password':
-          alert("Incorrect password")
+          Toast.show({
+            text: "Incorrect password!",
+            position: 'bottom',
+            buttonText: 'Okay'
+          })
           break;
         default:
-          alert(error.message)
+          Toast.show({
+            text: error.message,
+            position: 'bottom',
+            buttonText: 'Okay',
+          })
           break;
       }
     });
@@ -45,13 +64,13 @@ export default class LoginScreen extends React.Component {
             <Form>
               <Item floatingLabel>
                 <Label>Email</Label>
-                <Input autoCorrect={false} autoCapitalize='none' onChangeText={email => this.setState({ email })} />
+                <Input autoCorrect={false} autoCapitalize='none' keyboardType="email-address" onChangeText={email => this.setState({ email })} />
               </Item>
               <Item floatingLabel last style={{marginBottom: 50}}>
                 <Label>Password</Label>
                 <Input secureTextEntry={true} onChangeText={password => this.setState({ password })} />
               </Item>
-              <Button block onPress={() => this.logInUser()}>
+              <Button block onPress={() => this.logInUser() }>
                 <Text>Sign in</Text>
               </Button>
             </Form>

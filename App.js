@@ -1,7 +1,7 @@
 import React from 'react';
 import Expo from "expo";
 import { StyleSheet, View, StatusBar, Platform } from 'react-native';
-import { Button, Text, Content, Container, Header,Body , Left, Right, Icon, Title } from 'native-base';
+import { Button, Text, Content, Container, Header,Body , Left, Right, Icon, Title, Root } from 'native-base';
 import { Router, Scene, Actions } from 'react-native-router-flux';
 import HomeScreen from './src/screens/HomeScreen';
 import DetailScreen from './src/screens/DetailScreen';
@@ -34,6 +34,7 @@ export default class App extends React.Component {
       return <Expo.AppLoading />
     }
     return (
+      <Root>
         <Container>
           <Router navigationBarStyle={{marginTop: StatusBar.currentHeight, backgroundColor: 'white', shadowOpacity: 0, elevation: 0}} >
             <Scene key="root" hideNavBar={false} swipeEnabled={true}  >
@@ -74,6 +75,7 @@ export default class App extends React.Component {
           </Router>
           <AppFooter />
         </Container>
+        </Root>
     )
   }
 }
