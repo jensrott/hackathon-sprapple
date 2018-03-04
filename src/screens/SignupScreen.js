@@ -13,6 +13,7 @@ export default class LoginScreen extends React.Component {
         email: "",
         password: "",
         showToats: false,
+        loading: true,
     }
   }
   signUpUser() {
@@ -50,8 +51,12 @@ export default class LoginScreen extends React.Component {
                     coTotal: 0,
                     puntenTotal: 0,
                 }).then(() => {
-                    console.log('Added extra information to RealtimeDatabase')
+                    this.setState({
+                        loading: false,
+                    })
+                    Actions.refresh()
                     Actions.home()
+                    console.log('Added extra information to RealtimeDatabase')
                 }).catch(error => {
                     console.log(error.message);
                     user.delete().then(() => {
