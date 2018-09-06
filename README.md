@@ -11,4 +11,4 @@ You get points for every gram of co2 you save by cycling and these points can be
 3. Jens Rottiers (Firebase Developer)
 4. Stijn Stevens (Designer)
 
-Iedereen is React Native Developer
+Everyone is React Native Developer
